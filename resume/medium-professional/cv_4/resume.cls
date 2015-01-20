@@ -58,7 +58,7 @@
 \def \printaddress #1{
   \begingroup
     \def \\ {\addressSep\ }
-    \centerline{#1}
+    \rightline{#1}
   \endgroup
   \par
   \addressskip
@@ -66,11 +66,22 @@
 
 % \printname is used to print the name as a page header
 \def \printname {
-  \begingroup
-    \hfil{\MakeUppercase{\namesize\bf \@name}}\hfil
-    \nameskip\break
-  \endgroup
+  %\begingroup
+    %\hfil{\MakeUppercase{\namesize\bf \@name}}\hfil
+    %\nameskip\break
+  %\endgroup
 }
+
+\def \printheader {
+{\Huge\begin{tabular}[c]{l}
+  {\bf Qiyuan Qiu} \\
+\end{tabular}}\hfill%
+{\small\begin{tabular}[c]{r}
+  (585) 747 - 3721 \\
+  qqiu@cs.rochester.edu
+\end{tabular}}%
+}
+
 
 %----------------------------------------------------------------------------------------
 %	PRINT THE HEADING LINES
@@ -79,13 +90,14 @@
 \let\ori@document=\document
 \renewcommand{\document}{
   \ori@document  % Begin document
-  \printname % Print the name specified with \name
-  \@ifundefined{@addressone}{}{ % Print the first address if specified
-    \printaddress{\@addressone}}
-  \@ifundefined{@addresstwo}{}{ % Print the second address if specified
-    \printaddress{\@addresstwo}}
-     \@ifundefined{@addressthree}{}{ % Print the third address if specified
-    \printaddress{\@addressthree}}
+  %\printname % Print the name specified with \name
+  \printheader % Print the header
+  %\@ifundefined{@addressone}{}{ % Print the first address if specified
+    %\printaddress{\@addressone}}
+  %\@ifundefined{@addresstwo}{}{ % Print the second address if specified
+    %\printaddress{\@addresstwo}}
+     %\@ifundefined{@addressthree}{}{ % Print the third address if specified
+    %\printaddress{\@addressthree}}
 }
 
 %----------------------------------------------------------------------------------------
@@ -94,7 +106,7 @@
 
 % Defines the rSection environment for the large sections within the CV
 \newenvironment{rSection}[1]{ % 1 input argument - section name
-  \sectionskip
+ % \sectionskip
   \MakeUppercase{\bf #1} % Section title
   \sectionlineskip
   \hrule % Horizontal line
@@ -120,7 +132,7 @@
    \itemsep -0.5em \vspace{-0.5em} % Compress items in list together for aesthetics
   }{
   \end{list}
-  \vspace{0.5em} % Some space after the list of bullet points
+  \vspace{0.0em} % Some space after the list of bullet points
 }
 
 % The below commands define the whitespace after certain things in the document - they can be \smallskip, \medskip or \bigskip
