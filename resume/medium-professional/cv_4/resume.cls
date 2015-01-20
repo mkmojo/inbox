@@ -25,8 +25,9 @@
 \usepackage[parfill]{parskip} % Remove paragraph indentation
 \usepackage{array} % Required for boldface (\bf and \bfseries) tabular columns
 \usepackage{ifthen} % Required for ifthenelse statements
-
+\usepackage{amssymb}% Required for blackbox before item in list
 \pagestyle{empty} % Suppress page numbers
+
 
 %----------------------------------------------------------------------------------------
 %	HEADINGS COMMANDS: Commands for printing name and address
@@ -58,7 +59,7 @@
 \def \printaddress #1{
   \begingroup
     \def \\ {\addressSep\ }
-    \rightline{#1}
+    \centerline{#1}
   \endgroup
   \par
   \addressskip
@@ -66,19 +67,19 @@
 
 % \printname is used to print the name as a page header
 \def \printname {
-  %\begingroup
-    %\hfil{\MakeUppercase{\namesize\bf \@name}}\hfil
-    %\nameskip\break
-  %\endgroup
+  \begingroup
+    \hfil{\MakeUppercase{\namesize\bf \@name}}\hfil
+   \nameskip\break
+  \endgroup
 }
 
+% qqy customer version
 \def \printheader {
 {\Huge\begin{tabular}[c]{l}
-  {\bf Qiyuan Qiu} \\
+  {\bf \@name} \\
 \end{tabular}}\hfill%
 {\small\begin{tabular}[c]{r}
-  (585) 747 - 3721 \\
-  qqiu@cs.rochester.edu
+  \@addressone
 \end{tabular}}%
 }
 
@@ -90,14 +91,14 @@
 \let\ori@document=\document
 \renewcommand{\document}{
   \ori@document  % Begin document
-  %\printname % Print the name specified with \name
-  \printheader % Print the header
-  %\@ifundefined{@addressone}{}{ % Print the first address if specified
-    %\printaddress{\@addressone}}
-  %\@ifundefined{@addresstwo}{}{ % Print the second address if specified
-    %\printaddress{\@addresstwo}}
-     %\@ifundefined{@addressthree}{}{ % Print the third address if specified
-    %\printaddress{\@addressthree}}
+  \printname % Print the name specified with \name
+  %\printheader % Print the header
+  \@ifundefined{@addressone}{}{ % Print the first address if specified
+    \printaddress{\@addressone}}
+  \@ifundefined{@addresstwo}{}{ % Print the second address if specified
+    \printaddress{\@addresstwo}}
+     \@ifundefined{@addressthree}{}{ % Print the third address if specified
+    \printaddress{\@addressthree}}
 }
 
 %----------------------------------------------------------------------------------------
@@ -111,7 +112,7 @@
   \sectionlineskip
   \hrule % Horizontal line
   \begin{list}{}{ % List for each individual item in the section
-    \setlength{\leftmargin}{1.5em} % Margin within the section
+    \setlength{\leftmargin}{0.0em} % Margin within the section
   }
   \item[]
 }{
@@ -127,8 +128,8 @@
  \ifthenelse{\equal{#3}{}}{}{ % If the third argument is not specified, don't print the job title and location line
   \\
   {\em #3} \hfill {\em #4} % Italic job title and location
-  }\smallskip
-  \begin{list}{$\cdot$}{\leftmargin=0em} % \cdot used for bullets, no indentation
+  }%\smallskip
+  \begin{list}{\tiny$\bullet$}{\leftmargin=1.8em} % \cdot used for bullets, no indentation
    \itemsep -0.5em \vspace{-0.5em} % Compress items in list together for aesthetics
   }{
   \end{list}
