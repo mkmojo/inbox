@@ -18,6 +18,7 @@
 # Liskov, Perlis, and Ritchie.
 
 import itertools
+import time
 
 def floor_puzzle():
     bottom = 1
@@ -29,3 +30,25 @@ def floor_puzzle():
         Ritchie != Liskov + 1 and Ritchie != Liskov -1 and \
         Liskov != Kay + 1 and Liskov != Kay -1:
             return [Hopper, Kay, Liskov, Perlis, Ritchie]
+
+# *arg, packing and unpacking arguments
+def timecall(fn, *arg): # packing
+    t0 = time.clock()
+    result = fn(*arg)  # unpacking
+    t1 = time.clock()
+    return t1-t0, result
+
+def timecalls(n, fn, *arg):
+    """call function n times and return min, avg, and max time"""
+    if isinstance(n, int):
+        times = [timecall(fn, *arg)[0] for _ in range(n)]
+    elif isinstance(n, float):
+        times = []
+        while sum(times) < n:
+            times.append(timecall(fn, *arg)[0])
+    return min(times), average(times), max(times)
+
+def average(numbers):
+    return sum(numbers)/float(len(numbers))
+
+print timecalls(50, floor_puzzle,)
