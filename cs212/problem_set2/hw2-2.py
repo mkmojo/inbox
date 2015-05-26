@@ -20,6 +20,21 @@
 import itertools
 import time
 
+#profiling purpose
+def c(sequence):
+    c.starts += 1
+    for item in sequence:
+        c.items += 1
+        yield item
+
+#c is a generator function
+#generator function often goes with next() / for statement
+def instrument_fn(fn, *args):
+    c.starts, c.items = 0, 0
+    result = fn(*args)
+    print '%s got %s with %5d iters over %7d items' % (
+            fn.__name__, result, c.starts, c.items)
+
 def floor_puzzle():
     bottom = 1
     top = 5
@@ -31,21 +46,21 @@ def floor_puzzle():
         Liskov != Kay + 1 and Liskov != Kay -1:
             return [Hopper, Kay, Liskov, Perlis, Ritchie]
 
-# *arg, packing and unpacking arguments
-def timecall(fn, *arg): # packing
+# *args, packing and unpacking arguments
+def timecall(fn, *args): # packing
     t0 = time.clock()
-    result = fn(*arg)  # unpacking
+    result = fn(*args)  # unpacking
     t1 = time.clock()
     return t1-t0, result
 
-def timecalls(n, fn, *arg):
+def timecalls(n, fn, *args):
     """call function n times and return min, avg, and max time"""
     if isinstance(n, int):
-        times = [timecall(fn, *arg)[0] for _ in range(n)]
+        times = [timecall(fn, *args)[0] for _ in range(n)]
     elif isinstance(n, float):
         times = []
         while sum(times) < n:
-            times.append(timecall(fn, *arg)[0])
+            times.append(timecall(fn, *args)[0])
     return min(times), average(times), max(times)
 
 def average(numbers):
