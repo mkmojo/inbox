@@ -17,6 +17,7 @@ ListNode* makeList(vector<int> vals){
         if(i==0){ 
             head = node;
             p = head;
+            continue;
         }
         p->next = node;
         p = p->next;
@@ -35,9 +36,11 @@ class Solution {
             r->val = res;
             *carry = 0;
         }
-        cout << "add-> res: " << res << " r-val: " << r->val << " carry: " << *carry<<endl;
+        cout << "DEBUG: add-> res: " << res << " r-val: " << r->val 
+            << " carry: " << *carry<<endl;
     }
     public:
+
     void printList(ListNode *head, string listName){
         ListNode *p = head;
         cout << listName << ": ";
@@ -47,6 +50,7 @@ class Solution {
         }
         cout << endl;
     }
+
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         if(l1 == NULL) return l2;
         if(l2 == NULL) return l1;
@@ -55,45 +59,48 @@ class Solution {
         int carry = 0;
 
         while(l1 && l2){
-            add(l1, l2, &carry, r);
-            printList(l1, "l1");
-            printList(l2, "l2");
-            printList(l3, "l3");
+            //build node
             r->next = new ListNode(-1);
             r = r->next;
+            add(l1, l2, &carry, r);
+            //printList(l1, "l1");
+            //printList(l2, "l2");
+            //printList(l3->next, "l3");
             l1 = l1->next;
             l2 = l2->next;
         }
 
         while(carry == 1){
+            r->next = new ListNode(-1);
+            r = r->next;
             if(!l1 && !l2 ){
-                r->next = new ListNode(carry);
+                r->val = carry;
                 carry = 0;
             }else if(!l1 && l2){
                 add(l1, l2, &carry, r);
                 l2=l2->next;
-                r->next = new ListNode(-1);
-                r = r->next;
             }else if(l1 && !l2){
                 add(l1, l2, &carry, r);
                 l1=l1->next;
-                r->next = new ListNode(-1);
-                r = r->next;
             }else{
                 cout << "error" <<endl;
             }
         }
-        return l3;
+        
+        l1 ? r->next = l1 : l2 ? r->next = l2 : NULL;
+        return l3->next;
     }
 };
 
 int main()
 {
     Solution s;
-    vector<int> x = {9, 9, 9};
-    vector<int> y = {1, 0, 0};
-    ListNode* p = makeList(x);
-    ListNode* q = makeList(y);
+    vector<int> x = {2, 4, 3, 3,4,5,6,7,2,5,2,2,3};
+    vector<int> y = {5, 6, 4};
+    vector<int> m = {9, 9, 9};
+    vector<int> n = {1};
+    ListNode* p = makeList(n);
+    ListNode* q = makeList(m);
     s.printList(s.addTwoNumbers(p,q), "ans");
 
     return 0;
