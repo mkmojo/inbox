@@ -39,6 +39,15 @@ class Solution {
         cout << "DEBUG: add-> res: " << res << " r-val: " << r->val 
             << " carry: " << *carry<<endl;
     }
+
+    int readAndAdvance(ListNode * &l){
+        int res = 0;
+        if(l){
+            res = l->val;
+            l = l->next;
+        }
+        return res;
+    }
     public:
 
     void printList(ListNode *head, string listName){
@@ -86,9 +95,34 @@ class Solution {
                 cout << "error" <<endl;
             }
         }
-        
+
         l1 ? r->next = l1 : l2 ? r->next = l2 : NULL;
         return l3->next;
+    }
+
+    ListNode* addTwoNumbers1(ListNode* l1, ListNode* l2){
+        ListNode *h = NULL, **pp = &h;
+        int carry = 0, x = 0, y = 0, sum = 0;
+
+        while(l1 || l2){
+            x = readAndAdvance(l1);
+            y = readAndAdvance(l2);
+
+            sum = x + y + carry;
+
+            ListNode* node = new ListNode(sum%10);
+            *pp = node; 
+            pp = &(node->next);
+
+            carry = sum / 10;
+        }
+
+        if(carry == 1){
+            ListNode* node = new ListNode(1);
+            *pp = node; 
+            pp = &(node->next);
+        }
+        return h;
     }
 };
 
@@ -99,9 +133,11 @@ int main()
     vector<int> y = {5, 6, 4};
     vector<int> m = {9, 9, 9};
     vector<int> n = {1};
-    ListNode* p = makeList(n);
-    ListNode* q = makeList(m);
-    s.printList(s.addTwoNumbers(p,q), "ans");
+    vector<int> a = {0};
+    vector<int> b = {0};
+    ListNode* p = makeList(m);
+    ListNode* q = makeList(n);
+    s.printList(s.addTwoNumbers1(p,q), "ans");
 
     return 0;
 }
