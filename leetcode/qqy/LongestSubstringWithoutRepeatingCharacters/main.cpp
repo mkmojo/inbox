@@ -30,7 +30,7 @@ public:
         return len(p) < len(q);
     }
 
-    int lengthOfLongestSubstring(string s) {
+    int lengthOfLongestSubstring0(string s) {
         vector<pair<int, int> > vec;
         for(int i=0;i<s.size();i++){
             vec.push_back(grow(s, i));
@@ -112,6 +112,35 @@ public:
         return dp;
     } 
 
+    int lengthOfLongestSubstring(string s){
+        int ans = 0;
+        int b = 0;
+        map<char, int> mymap;
+        for(int i=0;i<s.size();i++){
+            char c = s[i];
+            int cntLen = 0;
+            if(mymap.find(c) == mymap.end()){
+                //have not seen this char before
+                mymap[c] = i;
+            }else{ 
+                //seen this char before
+                if(mymap[c]<b){
+                    //out of cnt region
+                    mymap[c] = i; 
+                }else{
+                    //within cnt region
+                    b = mymap[c] + 1;
+                    mymap[c] = i;
+                }
+            }
+
+            cntLen = i - b + 1;
+            if(cntLen > ans){
+                ans = cntLen;
+            }
+        }
+        return ans;
+    }
 };
 
 int main()
