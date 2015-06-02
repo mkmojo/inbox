@@ -119,25 +119,15 @@ public:
         for(int i=0;i<s.size();i++){
             char c = s[i];
             int cntLen = 0;
-            if(mymap.find(c) == mymap.end()){
-                //have not seen this char before
-                mymap[c] = i;
-            }else{ 
-                //seen this char before
-                if(mymap[c]<b){
-                    //out of cnt region
-                    mymap[c] = i; 
-                }else{
-                    //within cnt region
-                    b = mymap[c] + 1;
-                    mymap[c] = i;
-                }
+            if(mymap.find(c) != mymap.end() && b <= mymap[c]){ 
+                b = mymap[c] + 1;
             }
 
             cntLen = i - b + 1;
-            if(cntLen > ans){
+            if(cntLen > ans)
                 ans = cntLen;
-            }
+
+            mymap[c] = i; 
         }
         return ans;
     }
