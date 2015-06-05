@@ -34,36 +34,25 @@ class Solution {
         for(size_t i=1;i<s.size();i++){
             for(size_t j=0;i-j+1>res.size() && j<i;j++){
                 dp[j][i] = 0;
-                if(s[j] == s[i] && i-j+1>3){
-                    //cout << "j: " << j << " i: "<< i << ", " ;
+                if(s[j] == s[i]){
+
+                    if(i-j+1<=3){
+                        dp[j][i] = i - j + 1;
+                    }
+
                     if(dp[j+1][i-1] == -1) {
-                        //cout << " case -1, "; 
                         dp[j+1][i-1] = isPalindrome(s.substr(j+1, i-j-1));
                     }
 
-                    //check the result
                     if(dp[j+1][i-1] > 0){
-                        //cout << " case > 0  "; 
                         dp[j][i] = dp[j+1][i-1] + 2;
-                        if(i-j+1 > res.size())
-                            res = s.substr(j, i-j+1);
                     }
-                }
 
-                if(s[j] == s[i] && i-j+1 <=3){
-                    dp[j][i] = i - j + 1;
-                    if(i-j+1 > res.size())
+                    if(dp[j][i] > res.size())
                         res = s.substr(j, i-j+1);
                 }
-
             }
         }
-
-        //for(size_t i=0;i<s.size();i++){
-        //    for(size_t j=0;j<s.size();j++)
-        //        cout <<setw(3)<<dp[i][j]<< " ";
-        //    cout << endl;
-        //}
 
         return res;
     }
