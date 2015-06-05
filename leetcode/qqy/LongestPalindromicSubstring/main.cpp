@@ -4,13 +4,14 @@
 #include<set>
 #include<map>
 #include<algorithm>
+#include<iomanip>
 using namespace std;
 
 class Solution {
 
     int isPalindrome(string s){
         int i=0;
-        int j=s.size();
+        int j=s.size()-1;
         while(i<j){
             if(s[i] != s[j])
                 return 0;
@@ -29,31 +30,26 @@ class Solution {
 
         string res = "";
         for(size_t i=1;i<s.size();i++){
-            for(size_t j=0;i-j+1>res.size();j++){
+            for(size_t j=0;i-j+1>res.size() && j<i;j++){
                 dp[j][i] = 0;
-                if(s[j] == s[i]){
-                    if(dp[j+1][i-1] == -1){
-
-                        dp[j][i] = (dp[j+1][i-1] = 
-                                isPalindrome(s.substr(j+1, i-j-1))) + 2;
-
-                        if( i-j+1 > res.size())
-                            res = s.substr(j, i-j+1);
-                    }else if(dp[j+1][i-1] == 0){
-                        dp[j][i] = 0;
-                    }else if(dp[j+1][i-1] > 0){
+                if(s[j] == s[i] && dp[j+1][i-1] != 0 ){
+                    if(dp[j+1][i-1] == -1) dp[j+1][i-1] = isPalindrome(s.substr(j+1, i-j-1));
+                    if(dp[j+1][i-1] > 0){
                         dp[j][i] = dp[j+1][i-1] + 2;
-                        if( i-j+1 > res.size())
+                        if(i-j+1 > res.size())
                             res = s.substr(j, i-j+1);
-                    } else{
-                        cout << "erroe" <<endl;
                     }
-
-
                 }
             }
         }
-        return res;
+
+    for(size_t i=0;i<s.size();i++){
+        for(size_t j=0;j<s.size();j++)
+            cout <<setw(3)<<dp[i][j]<< " ";
+        cout << endl;
+    }
+
+    return res;
     }
 };
 
@@ -67,6 +63,7 @@ int main()
     cout << s.longestPalindrome("xxabcdefgh") <<endl;
     cout << s.longestPalindrome("abcdefghxx") <<endl;
     cout << s.longestPalindrome("aaaacdefgbbbbbkkle") <<endl;
+    cout << s.longestPalindrome("aaabaaaa") <<endl;
     return 0;
 }
 
