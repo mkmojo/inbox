@@ -20,6 +20,7 @@ class Solution {
         }
         return s.size();
     }
+
     public:
     string longestPalindrome(string s) {
         if(s.size() <= 1) return s;
@@ -53,7 +54,6 @@ class Solution {
                 }
             }
         }
-
         return res;
     }
 };
