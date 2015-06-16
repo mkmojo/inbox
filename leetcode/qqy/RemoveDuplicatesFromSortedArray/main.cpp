@@ -42,12 +42,13 @@ class Solution {
         int l = 0;
         int r = 1;
         while(r < nums.size() && l<r){
-            if(nums[l] != nums[r]){
-                l++;
-                myswap(nums, l, r);
+            if(nums[l] == nums[r]){
                 r++;
                 continue;
             }
+            //for not equal case
+            myswap(nums, l+1, r);
+            l++;
             r++;
         }
         nums.resize(l+1);
