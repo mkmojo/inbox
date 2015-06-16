@@ -14,10 +14,10 @@ class Solution {
         cout <<endl;
     }
 
-    void swap(vector<int>& v, int l, int r){
+    void myswap(vector<int>& v, int l, int r){
         int t = v[l];
-        v[r] = t;
         v[l] = v[r];
+        v[r] = t;
     }
 
     public:
@@ -40,12 +40,13 @@ class Solution {
         if(nums.size() <= 1) return nums.size();
 
         int l = 0;
-        int r = 0;
-        while(r < nums.size()){
+        int r = 1;
+        while(r < nums.size() && l<r){
             if(nums[l] != nums[r]){
-                swap(nums, l, r);
                 l++;
+                myswap(nums, l, r);
                 r++;
+                continue;
             }
             r++;
         }
@@ -64,12 +65,12 @@ int main()
     vector<int> vec_one = {1};
     vector<int> vec_all_one = {1,1,1,1,1,1,1,1,1,1};
     vector<int> vec_all_neg_one = {-1,  -1,  -1,  -1, -1};
-    cout<< s.removeDuplicates(vec)<< endl;
-    cout<< s.removeDuplicates(vec1)<< endl;
-    cout<< s.removeDuplicates(vec_empty)<< endl;
-    cout<< s.removeDuplicates(vec_one)<< endl;
-    cout<< s.removeDuplicates(vec_all_one)<< endl;
-    cout<< s.removeDuplicates(vec_all_neg_one)<< endl;
+    cout<< s.removeDuplicates(vec)<< endl <<endl;
+    cout<< s.removeDuplicates(vec1)<< endl <<endl;
+    cout<< s.removeDuplicates(vec_empty)<< endl <<endl;
+    cout<< s.removeDuplicates(vec_one)<< endl <<endl;
+    cout<< s.removeDuplicates(vec_all_one)<< endl <<endl;
+    cout<< s.removeDuplicates(vec_all_neg_one)<< endl <<endl;
     return 0;
 }
 
