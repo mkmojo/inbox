@@ -23,6 +23,7 @@ class Solution {
     public:
     string longestPalindrome(string s) {
         if(s.size() <= 1) return s;
+        cout << "input: " << s <<endl;
         int dp[s.size()][s.size()];
         for(size_t i=0;i<s.size();i++)
             for(size_t j=0;j<s.size();j++)
@@ -30,26 +31,36 @@ class Solution {
 
         string res = "";
         for(size_t i=1;i<s.size();i++){
-            for(size_t j=0;i-j+1>res.size() && j<i;j++){
+            for(size_t j=0; i-j+1>res.size() && j<i-1;j++){
                 dp[j][i] = 0;
-                if(s[j] == s[i] && dp[j+1][i-1] != 0 ){
-                    if(dp[j+1][i-1] == -1) dp[j+1][i-1] = isPalindrome(s.substr(j+1, i-j-1));
-                    if(dp[j+1][i-1] > 0){
+                if(s[j] == s[i]){
+
+                    if(dp[j+1][i-1] == -1) {
+                        dp[j+1][i-1] = isPalindrome(s.substr(j+1, i-j-1));
+                        
+                        cout << "DEBUG: substr " << s.substr(j+1, i-j-1) <<
+                            " j "<< j  << " i " << i<< endl;
+                    }
+
+                    if(dp[j+1][i-1] >= 0){
+                        //cout << "DEBUG: substr " << s.substr(j+1, i-j-1) <<
+                            //" j "<< j  << " i " << i<< endl;
                         dp[j][i] = dp[j+1][i-1] + 2;
-                        if(i-j+1 > res.size())
+                        if(i-j+1 > res.size()){
                             res = s.substr(j, i-j+1);
+                            cout << "DEBUG: " << res <<endl;
+                        }
                     }
                 }
             }
         }
 
-    for(size_t i=0;i<s.size();i++){
-        for(size_t j=0;j<s.size();j++)
-            cout <<setw(3)<<dp[i][j]<< " ";
-        cout << endl;
-    }
-
-    return res;
+        for(size_t i=0;i<s.size();i++){
+            for(size_t j=0;j<s.size();j++)
+                cout <<setw(3)<<dp[i][j]<< " ";
+            cout << endl;
+        }
+        return res;
     }
 };
 
