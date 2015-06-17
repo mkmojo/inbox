@@ -61,7 +61,7 @@ class Solution {
 int main()
 {
     Solution s;
-    cout << "input xxabccbatt\n" <<s.longestPalindrome("xxabccbatt") <<endl;
+    cout << s.longestPalindrome("xxabccbatt") <<endl;
     cout << s.longestPalindrome("bccbatt") <<endl;
     cout << s.longestPalindrome("aaaaaaa") <<endl;
     cout << s.longestPalindrome("") <<endl;
