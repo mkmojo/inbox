@@ -20,54 +20,49 @@ class Solution {
         }
         return s.size();
     }
+
     public:
     string longestPalindrome(string s) {
         if(s.size() <= 1) return s;
-        cout << "input: " << s <<endl;
         int dp[s.size()][s.size()];
         for(size_t i=0;i<s.size();i++)
-            for(size_t j=0;j<s.size();j++)
+            for(size_t j=0;j<s.size();j++){
                 dp[i][j] = -1;
+                if(i==j) dp[i][j] = 1;
+            }
 
         string res = "";
         for(size_t i=1;i<s.size();i++){
-            for(size_t j=0; i-j+1>res.size() && j<i-1;j++){
+            for(size_t j=0;i-j+1>res.size() && j<i;j++){
                 dp[j][i] = 0;
                 if(s[j] == s[i]){
 
+                    if(i-j+1<=3){
+                        dp[j][i] = i - j + 1;
+                    }
+
                     if(dp[j+1][i-1] == -1) {
                         dp[j+1][i-1] = isPalindrome(s.substr(j+1, i-j-1));
-                        
-                        cout << "DEBUG: substr " << s.substr(j+1, i-j-1) <<
-                            " j "<< j  << " i " << i<< endl;
                     }
 
-                    if(dp[j+1][i-1] >= 0){
-                        //cout << "DEBUG: substr " << s.substr(j+1, i-j-1) <<
-                            //" j "<< j  << " i " << i<< endl;
+                    if(dp[j+1][i-1] > 0){
                         dp[j][i] = dp[j+1][i-1] + 2;
-                        if(i-j+1 > res.size()){
-                            res = s.substr(j, i-j+1);
-                            cout << "DEBUG: " << res <<endl;
-                        }
                     }
+
+                    if(dp[j][i] > res.size())
+                        res = s.substr(j, i-j+1);
                 }
             }
-        }
-
-        for(size_t i=0;i<s.size();i++){
-            for(size_t j=0;j<s.size();j++)
-                cout <<setw(3)<<dp[i][j]<< " ";
-            cout << endl;
         }
         return res;
     }
 };
 
+
 int main()
 {
     Solution s;
-    cout << s.longestPalindrome("xxabccbatt") <<endl;
+    cout << "input xxabccbatt\n" <<s.longestPalindrome("xxabccbatt") <<endl;
     cout << s.longestPalindrome("bccbatt") <<endl;
     cout << s.longestPalindrome("aaaaaaa") <<endl;
     cout << s.longestPalindrome("") <<endl;

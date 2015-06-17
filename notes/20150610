@@ -1,0 +1,6 @@
+I tried the fsanitize=address option of g++
+It shows that even the source of PowerGraph will have the same issue
+
+Heard about GraphSC project. 
+This is a project that can be treated as a simplified GraphLab. 
+However it can be thought as more secure. 
