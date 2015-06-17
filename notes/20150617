@@ -1,0 +1,10 @@
+1. Setup hadoop on graduate side.
+
+2. Can run spark interactive session. 
+
+3. Change knn to use much less memory. ( do not know how to measure exactly how much).
+
+
+
+
+
