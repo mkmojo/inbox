@@ -11,8 +11,8 @@ fileitem = form['filename']
 # Test if the file was uploaded
 if fileitem.filename :
     fn = os.path.basename(fileitem.filename)
-    pic_path = os.path.join('/var/www/ocr/cgi-bin/tmp/', fn)
-    out_path = os.path.join('/var/www/ocr/cgi-bin/tmp/', fn)
+    pic_path = os.path.join(os.getcwd(), 'cgi-bin/tmp/', fn)
+    out_path = os.path.join(os.getcwd(), 'cgi-bin/tmp/', fn)
     open(pic_path, 'wb').write(fileitem.file.read())
     message = 'The file "' + fn + '" was uploaded successfully'
 
