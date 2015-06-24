@@ -3,9 +3,13 @@ from flask.ext.script import Manager
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.wtf import Form
 from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.script import Shell
 from wtforms import StringField, SubmitField
 from wtforms.validators import Required
 import os
+
+def make_shell_context():
+    return dict(app=app, db=db, User=User, Role=Role)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -17,6 +21,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = \
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 
 manager = Manager(app)
+manager.add_command("shell", Shell(make_context=make_shell_context))
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 
