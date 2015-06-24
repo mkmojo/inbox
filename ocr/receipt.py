@@ -34,6 +34,7 @@ class Role(db.Model):
     def __repr__(self):
         return '<Role %r>' % self.name
 
+
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
@@ -48,13 +49,20 @@ class User(db.Model):
 def index():
     form = NameForm()
     if form.validate_on_submit():
+        user = User.query.filter_by(username=form.name.data).first()
+        if user is None:
+            user = User(username=form.name.data)
+            db.session.add(user)
+            session['known'] = False
+        else:
+            session['known'] = True
+            form.name.data = ''
         session['name'] = form.name.data
         return redirect(url_for('index'))
-    return render_template('index.html', form=form, name=session.get('name'))
-
-@app.route('/user/<name>')
-def user(name):
-    return render_template('user.html', name=name)
+    return render_template('index.html',
+            form=form,
+            known=session.get('known', False),
+            name=session.get('name'))
 
 
 if __name__ == '__main__':
