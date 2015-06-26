@@ -8,5 +8,5 @@ class NameForm(Form):
     submit = SubmitField('Submit')
 
 class UploadForm(Form):
-    photo = FileField('Photo', validators=[Required()])
+    photo = FileField('Photo of Receipt', validators=[Required()])
     submit = SubmitField('Upload')
