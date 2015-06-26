@@ -12,4 +12,15 @@
     {{wtf.quick_form(form)}}
 </form>
 
+<div>
+    <p>Reusult:</p>
+    <pre>
+    {% if text %}
+    {% for line in text %}
+    {{line}}
+    {%endfor%}
+    {% endif %}
+    </pre>
+</div>
+
 {% endblock %}
