@@ -2,6 +2,7 @@ from flask import render_template
 from werkzeug import secure_filename
 from . import main
 from forms import UploadForm
+import subprocess
 import os
 
 def run_ocr(photo_filename, username='anonymous', \
@@ -9,7 +10,10 @@ def run_ocr(photo_filename, username='anonymous', \
     photo_path = os.path.join(os.getcwd(), 'uploads/', photo_filename )
     out_path = os.path.join(os.getcwd(), 'output/', username, photo_filename)
     command = ' '.join([ocr_engine, '-l ' + language, photo_path, out_path])
-    os.system(command)
+    try:
+        subprocess.call(command)
+    except :
+        return (['Command Fail:\n' + command])
 
     message = []
     with open(out_path+'.txt', 'r') as f:
