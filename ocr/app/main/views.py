@@ -23,7 +23,7 @@ def run_ocr(user, photo_path, text_path,\
 
     command = ' '.join([ocr_engine, '-l ' + language, photo_path, text_path])
     try:
-        subprocess.call(command)
+        subprocess.call(command.split())
     except :
         return (['Command Fail:\n' + command])
 
