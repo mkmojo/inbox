@@ -7,6 +7,7 @@ from ..models import User, Pic
 import subprocess
 import os
 from .. import db
+from time import gmtime, strftime
 
 
 def run_ocr(user, photo_path, text_path,\
@@ -55,7 +56,8 @@ def index():
         else:
             user = User.query.filter_by(id=current_user.get_id()).first_or_404()
 
-        filename = secure_filename(form.photo.data.filename)
+        filename = strftime("%Y-%m-%d-%H:%M:%S_", gmtime()) + \
+                secure_filename(form.photo.data.filename)
         photo_path = os.path.join(os.getcwd(), 'uploads/', str(user.id),  filename)
         text_path = os.path.join(os.getcwd(), 'output/', str(user.id), filename)
         photo_dir_name = os.path.dirname(photo_path)
