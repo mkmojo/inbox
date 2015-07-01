@@ -7,7 +7,8 @@ from . import db, login_manager
 class Pic(db.Model):
     __tablename__ = 'pics'
     id = db.Column(db.Integer, primary_key=True)
-    picture = db.Column(db.BLOB)
+    pic_path = db.Column(db.String(256), unique=True)
+    text_path = db.Column(db.Text(256), unique=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def __repr__(self):
