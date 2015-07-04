@@ -1,3 +1,5 @@
+from datetime import datetime
+import hashlib
 from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask import current_app
@@ -9,6 +11,7 @@ class Pic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     pic_path = db.Column(db.String(256), unique=True)
     text_path = db.Column(db.Text(256), unique=True)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def __repr__(self):
@@ -32,7 +35,7 @@ class User(UserMixin, db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     password_hash = db.Column(db.String(128))
     confirmed = db.Column(db.Boolean, default=False)
-    pics = db.relationship('Pic', backref='user', lazy='dynamic')
+    pics = db.relationship('Pic', backref='owner', lazy='dynamic')
 
     @property
     def password(self):
