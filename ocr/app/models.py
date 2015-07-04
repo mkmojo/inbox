@@ -140,9 +140,28 @@ class User(UserMixin, db.Model):
         db.session.add(self)
         return True
 
+    def can(self, permissions):
+        return self.role is not None and \
+                (self.role.permission & permissions) == permissions
+
+    def is_admin(self):
+        return self.can(Permission.ADMINISTER)
+
 
     def __repr__(self):
         return '<User %r>' % self.username
+
+
+class AnonymousUser(AnonymousUserMixin):
+    def can(self, permissions):
+        """allow anonymous user to play with upload functionality and provide feedback"""
+        return self.can(Permission.UPLOAD_PICS |
+                Permission.ADD_NOTES)
+
+    def is_administrator(self):
+        return False
+
+login_manager.anonymous_user = AnonymousUser
 
 @login_manager.user_loader
 def load_user(user_id):
