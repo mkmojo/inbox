@@ -6,6 +6,12 @@ from flask import current_app
 from flask.ext.login import UserMixin
 from . import db, login_manager
 
+class Permission:
+    ADD_NOTES = 0x01
+    UPLOAD_PICS = 0x02
+    MODERATE_NOTES = 0x04
+    ADMINISTER=0x80
+
 class Pic(db.Model):
     __tablename__ = 'pics'
     id = db.Column(db.Integer, primary_key=True)
@@ -25,6 +31,25 @@ class Role(db.Model):
     permissions = db.Column(db.Integer)
     users = db.relationship('User', backref='role', lazy='dynamic')
 
+    @staticmethod
+    def insert_roles():
+        roles = {
+            'User': (Permission.ADD_NOTES |
+                     Permission.UPLOAD_PICS, True),
+            'Moderator': (Permission.ADD_NOTES |
+                          Permission.UPLOAD_PICS |
+                          Permission.MODERATE_NOTES, False),
+            'Administrator': (0xff, False)
+        }
+        for r in roles:
+            role = Role.query.filter_by(name=r).first()
+            if role is None:
+                role = Role(name=r)
+            role.permissions = roles[r][0]
+            role.default = roles[r][1]
+            db.session.add(role)
+        db.session.commit()
+
     def __repr__(self):
         return '<Role %r>' % self.name
 
@@ -38,6 +63,18 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     confirmed = db.Column(db.Boolean, default=False)
     pics = db.relationship('Pic', backref='owner', lazy='dynamic')
+
+
+    def __init__(self, **kwargs):
+        super(User, self).__init__(**kwargs)
+        if self.role is None:
+            if self.email == current_app.config['FLASKY_ADMIN']:
+                self.role = Role.query.filter_by(permissions=0xff).first()
+            if self.role is None:
+                self.role = Role.query.filter_by(default=True).first()
+        if self.email is not None and self.avatar_hash is None:
+            self.avatar_hash = hashlib.md5(
+                self.email.encode('utf-8')).hexdigest()
 
     @property
     def password(self):
@@ -102,6 +139,7 @@ class User(UserMixin, db.Model):
         self.email = new_email
         db.session.add(self)
         return True
+
 
     def __repr__(self):
         return '<User %r>' % self.username
