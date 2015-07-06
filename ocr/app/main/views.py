@@ -1,47 +1,13 @@
 from flask import render_template
-from flask.ext.login import current_user
+from flask.ext.login import current_user, login_required
 from werkzeug import secure_filename
 from . import main
 from forms import UploadForm
-from ..models import User, Pic
-import subprocess
-import os
-from .. import db
 from time import gmtime, strftime
-
-
-def run_ocr(user, photo_path, text_path,\
-        ocr_engine='tesseract', language = 'eng'):
-    """
-    photo_path: input/user uploaded file location
-    text_path: output/interpreted file location
-    !!NOTICE: tesseract appends '.txt' to the end of input filename
-    """
-    #create directory if not there
-    text_dir = os.path.dirname(text_path)
-    if not os.path.exists(text_dir):
-        os.mkdir(text_dir)
-
-    command = ' '.join([ocr_engine, '-l ' + language, photo_path, text_path])
-    try:
-        subprocess.call(command.split())
-    except :
-        return (['Command Fail:\n' + command])
-
-    #save statistics to database
-    #need to add in hash later in the future for better security
-    pic = Pic(pic_path = photo_path, text_path = text_path + '.txt')
-    db.session.add(pic)
-    db.session.commit()
-
-    message = []
-    with open(text_path + '.txt', 'r') as f:
-        for line in f:
-            line = line.decode('utf-8').strip()
-            if line != '':
-                message += [line]
-
-    return message
+from run_ocr import run_ocr
+from ..models import User, Pic
+from .. import db
+import os
 
 
 @main.route('/', methods=['GET', 'POST'])
@@ -71,3 +37,11 @@ def index():
         text = run_ocr(user, photo_path, text_path)
     return render_template('index.html', form=form, text=text)
 
+
+@main.route('/user/<user_id>')
+def user(user_id):
+    user = User.query.filter_by(id=int(user_id)).first()
+    if user is None:
+        abort(404)
+    pics = Pic.query.order_by(Pic.timestamp.desc()).all()
+    return render_template('user/user.html', user=user, posts=pics)

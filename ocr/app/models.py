@@ -2,7 +2,7 @@ from datetime import datetime
 import hashlib
 from werkzeug.security import generate_password_hash, check_password_hash
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from flask import current_app
+from flask import current_app, request, url_for
 from flask.ext.login import UserMixin, AnonymousUserMixin
 from . import db, login_manager
 
@@ -11,17 +11,6 @@ class Permission:
     UPLOAD_PICS = 0x02
     MODERATE_NOTES = 0x04
     ADMINISTER=0x80
-
-class Pic(db.Model):
-    __tablename__ = 'pics'
-    id = db.Column(db.Integer, primary_key=True)
-    pic_path = db.Column(db.String(256), unique=True)
-    text_path = db.Column(db.Text(256), unique=True)
-    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-
-    def __repr__(self):
-        return '<Data %r>' %self.user
 
 class Role(db.Model):
     __tablename__ = 'roles'
@@ -53,6 +42,17 @@ class Role(db.Model):
     def __repr__(self):
         return '<Role %r>' % self.name
 
+class Pic(db.Model):
+    __tablename__ = 'pics'
+    id = db.Column(db.Integer, primary_key=True)
+    pic_path = db.Column(db.String(256), unique=True)
+    text_path = db.Column(db.Text(256), unique=True)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def __repr__(self):
+        return '<Pic %r>' %self.pic_path
+
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -62,6 +62,7 @@ class User(UserMixin, db.Model):
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     password_hash = db.Column(db.String(128))
     confirmed = db.Column(db.Boolean, default=False)
+    avatar_hash = db.Column(db.String(32))
     pics = db.relationship('Pic', backref='owner', lazy='dynamic')
 
 
@@ -147,6 +148,15 @@ class User(UserMixin, db.Model):
     def is_admin(self):
         return self.can(Permission.ADMINISTER)
 
+    def gravatar(self, size=100, default='identicon', rating='g'):
+        if request.is_secure:
+            url = 'https://secure.garvatar.com/avatar'
+        else:
+            url = 'http://www.gravatar.com/avatar'
+        hash = self.avatar_hash or hashlib.md5(
+                sef.emailencode('uft-8')).hexdigest()
+        return '{url}/{hash}?s={size}&d={default}&r={rating}'.format(
+                url=url, hash=hash, size=size, default=default, rating=rating)
 
     def __repr__(self):
         return '<User %r>' % self.username
