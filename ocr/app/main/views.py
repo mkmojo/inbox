@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, abort
 from flask.ext.login import current_user, login_required
 from werkzeug import secure_filename
 from . import main
@@ -39,6 +39,7 @@ def index():
 
 
 @main.route('/user/<user_id>')
+@login_required
 def user(user_id):
     user = User.query.filter_by(id=int(user_id)).first()
     if user is None:
