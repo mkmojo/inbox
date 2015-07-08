@@ -1,0 +1,16 @@
+In the morning  tried to reproduce Sasha's error message
+    - can now use ant to compile entire project
+    - can now use make file to compile elki library
+    
+In the afternoon had meeting with Sandhya/Sasha about RDD
+    - promise to figure out what leads to Java heap error
+    - send invitation to iftekah to use my cluster
+    - move /tmp to localdisk 
+
+In the evening set up Windows debugging mode in intellij for hadoop
+    - can run wordcount example just fine
+    - successfully formatted hdfs for standalone cluster  ( do not save file to 
+    anyplace with space in path name)
+
+TODO:
+Put input file into windows hdfs and debug the hadoop knnjoin code
