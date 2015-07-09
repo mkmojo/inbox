@@ -1,0 +1,8 @@
+Fix the Hadoop configuration bug:
+    The environment variable in Intellij should point to correct folder path
+Fix the input file bug:
+    The input file of knnjoin needs to have a certain format for S set
+    The file name of the input file needs to of "inner" "outer"
+    The input path to the knnjoin application should be path to folders
+Discuss with Saminda:
+    How to proceed from this point on
