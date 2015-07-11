@@ -30,4 +30,10 @@ def user(user_id):
         abort(404)
     #pics = Pic.query.order_by(Pic.timestamp.desc()).all()
     pics = user.pics.order_by(Pic.timestamp.desc())
-    return render_template('user/user.html', user=user, posts=pics)
+    return render_template('user/index.html', user=user, posts=pics)
+
+
+#@main.route('/', defaults={'path':''})
+#@main.route('/<path:path>')
+#def catch_all(path):
+#    return 'You want path: %s' % path
