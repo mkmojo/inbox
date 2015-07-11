@@ -8,8 +8,7 @@ from flask import url_for
 from werkzeug import secure_filename
 
 
-def run_ocr(user, form, \
-        ocr_engine='tesseract', language = 'eng'):
+def run_ocr(user, form, ocr_engine='tesseract', language = 'eng'):
     """
     !!NOTICE: tesseract appends '.txt' to the end of input filename
     """
@@ -44,19 +43,25 @@ def run_ocr(user, form, \
     except :
         return (['Command Fail:\n' + command])
 
-    #save statistics to database
-    #need to add in hash later in the future for better security
-    pic = Pic(pic_path = relative_pic_path, text_path = relative_text_path + \
-            '.txt', owner=user)
-    if user.id != 0:
-        db.session.add(pic)
-        db.session.commit()
 
+    #construct return text
     message = []
     with open(text_path + '.txt', 'r') as f:
         for line in f:
             line = line.decode('utf-8').strip()
             if line != '':
                 message += [line]
+
+    #save statistics to database
+    #need to add in hash later in the future for better security
+    try:
+        pic = Pic(pic_path = relative_pic_path, text_path = relative_text_path + \
+                '.txt', text_res='\n'.join(message), owner=user)
+
+        if user.id != 0:
+            db.session.add(pic)
+            db.session.commit()
+    except:
+        return (["save to database fail"])
 
     return message
