@@ -48,8 +48,9 @@ def run_ocr(user, form, \
     #need to add in hash later in the future for better security
     pic = Pic(pic_path = relative_pic_path, text_path = relative_text_path + \
             '.txt', owner=user)
-    db.session.add(pic)
-    db.session.commit()
+    if user.id != 0:
+        db.session.add(pic)
+        db.session.commit()
 
     message = []
     with open(text_path + '.txt', 'r') as f:
