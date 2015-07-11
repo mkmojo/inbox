@@ -45,8 +45,9 @@ class Role(db.Model):
 class Pic(db.Model):
     __tablename__ = 'pics'
     id = db.Column(db.Integer, primary_key=True)
-    pic_path = db.Column(db.String(256), unique=True)
-    text_path = db.Column(db.Text(256), unique=True)
+    pic_path = db.Column(db.String(256))
+    text_path = db.Column(db.Text(256))
+    text_res = db.Column(db.Text) #save the actual result
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
