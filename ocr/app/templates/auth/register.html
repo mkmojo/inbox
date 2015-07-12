@@ -25,16 +25,20 @@
             <div>
                 <h1 class="logo-name">MB</h1>
             </div>
+            {{wtf.quick_form(form)}}
             <h3>Register to MyBill</h3>
             <p>Create account to see it in action.</p>
-            <form class="m-t" role="form">
+            <form class="m-t" role="form" method="post">
                 <div style="display:none">
                     {{form.csrf_token}}
                 </div>
-                {{macros.render_field(form.email, label_visible=false, placeholder='Email')}}
-                {{macros.render_field(form.username, label_visible=false, placeholder='Username')}}
-                {{macros.render_field(form.password, label_visible=false, placeholder='Password')}}
-                {{macros.render_field(form.password2, label_visible=false, placeholder='Confirm Password')}}
+                {{macros.render_field(form.email, label_visible=false, placeholder='Email', type='email')}}
+                {{macros.render_field(form.username, label_visible=false, placeholder='Username',
+                type='username')}}
+                {{macros.render_field(form.password, label_visible=false, placeholder='Password',
+                type='password')}}
+                {{macros.render_field(form.password2, label_visible=false, placeholder='Confirm Password',
+                type='password2')}}
                 {{macros.render_field(form.submit, label_visible=false, type="submit",
                 class="btn btn-primary block full-width m-b")}}
 
