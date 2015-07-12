@@ -70,7 +70,7 @@
                 </li>
                 -->
 
-                
+
                 <!--
                 <li>
                 <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
@@ -157,23 +157,16 @@
                 </li>
                 -->
 
-                <!--
                 <li>
-                <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">Miscellaneous</span><span class="label label-info pull-right">NEW</span></a>
+                <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">Account</span><span class="fa arrow"></span><span class="label label-info pull-right"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="toastr_notifications.html">Notification</a></li>
-                    <li><a href="nestable_list.html">Nestable list</a></li>
-                    <li><a href="timeline_2.html">Timeline v.2</a></li>
-                    <li><a href="forum_main.html">Forum view</a></li>
-                    <li><a href="google_maps.html">Google maps</a></li>
-                    <li><a href="code_editor.html">Code editor</a></li>
-                    <li><a href="modal_window.html">Modal window</a></li>
-                    <li><a href="validation.html">Validation</a></li>
-                    <li><a href="tree_view.html">Tree view</a></li>
-                    <li><a href="chat_view.html">Chat view</a></li>
+                    <li><a href={{url_for('auth.change_password')}}>Change Password</a></li>
+                    <li><a href={{url_for('auth.change_email_request')}}>Change Email</a></li>
+                    <li><a href={{url_for('auth.logout')}}>Logout</a></li>
                 </ul>
                 </li>
 
+                <!--
                 <li>
                 <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">UI Elements</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -313,7 +306,7 @@
 
 
                     <li>
-                    <a href={{url_for('auth.login')}}>
+                    <a href={{url_for('auth.logout')}}>
                         <i class="fa fa-sign-out"></i> Log out
                     </a>
                     </li>
