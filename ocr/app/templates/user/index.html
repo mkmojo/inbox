@@ -30,6 +30,10 @@
                 <li class="nav-header">
                 <div class="dropdown profile-element"> 
                     <span> <img alt="image" class="img-circle" src="{{url_for('static',filename='img/profile_small.jpg')}}" /> </span>
+                    <a>
+                        <span class="clear"> <span class="block m-t-xs">  <strong class="font-bold"> {{user.username}} </strong>
+                        </span> </span>
+                    </a>
                     <!-- 
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{user.username}}</strong>
