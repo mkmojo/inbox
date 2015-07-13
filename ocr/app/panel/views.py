@@ -1,13 +1,10 @@
 from flask import render_template, abort
 from flask.ext.login import current_user, login_required
-from . import main
-from forms import UploadForm
-from run_ocr import run_ocr
 from ..models import User, Pic
-from .. import db
+from . import panel
 
 
-@panel.route('/user/<user_id>')
+@panel.route('/<user_id>')
 @login_required
 def user(user_id):
     user = User.query.filter_by(id=int(user_id)).first()
