@@ -53,7 +53,7 @@
     <script src="{{url_for('auth.static', filename='js/jquery-2.1.1.js')}}"></script>
     <script src="{{url_for('auth.static', filename='js/bootstrap.min.js')}}"></script>
     <!-- iCheck -->
-    <script src="js/plugins/iCheck/icheck.min.js"></script>
+    <script src="{{url_for('auth.static', filename='js/plugins/iCheck/icheck.min.js')}}"></script>
     <script>
         $(document).ready(function(){
             $('.i-checks').iCheck({
