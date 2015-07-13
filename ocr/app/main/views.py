@@ -22,15 +22,6 @@ def index():
     return render_template('index.html', form=form, text=text)
 
 
-@main.route('/user/<user_id>')
-@login_required
-def user(user_id):
-    user = User.query.filter_by(id=int(user_id)).first()
-    if user is None:
-        abort(404)
-    #pics = Pic.query.order_by(Pic.timestamp.desc()).all()
-    pics = user.pics.order_by(Pic.timestamp.desc())
-    return render_template('user/index.html', user=user, posts=pics)
 
 
 #@main.route('/', defaults={'path':''})
