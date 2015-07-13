@@ -59,7 +59,7 @@ def register():
                    'auth/email/confirm', user=user, token=token)
         flash('A confirmation email has been sent to you by email.')
         return redirect(url_for('auth.login'))
-    return render_template('auth/register.html', form=form)
+    return render_template('register.html', form=form)
 
 
 @auth.route('/confirm/<token>')
