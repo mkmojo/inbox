@@ -19,9 +19,7 @@ def index():
         else:
             user = User.query.filter_by(id=current_user.get_id()).first_or_404()
         text = run_ocr(user, form)
-    return render_template('index.html', form=form, text=text)
-
-
+    return render_template('main/index.html', form=form, text=text)
 
 
 #@main.route('/', defaults={'path':''})

@@ -3,7 +3,6 @@ from flask.ext.login import current_user, login_required
 from ..models import User, Pic
 from . import panel
 
-
 @panel.route('/<user_id>')
 @login_required
 def user(user_id):
@@ -11,4 +10,4 @@ def user(user_id):
     if user is None:
         abort(404)
     pics = user.pics.order_by(Pic.timestamp.desc())
-    return render_template('index.html', user=user, posts=pics)
+    return render_template("panel/index.html", user=user, posts=pics)
