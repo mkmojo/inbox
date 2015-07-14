@@ -7,7 +7,7 @@ from . import panel
 @login_required
 def user(user_id):
     user = User.query.filter_by(id=int(user_id)).first()
-    if user is None:
+    if user is None or (current_user.id != user.id):
         abort(404)
     pics = user.pics.order_by(Pic.timestamp.desc())
     return render_template("panel/index.html", user=user, posts=pics)
