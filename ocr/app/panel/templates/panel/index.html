@@ -22,11 +22,11 @@
 
     </head>
 
-    <body>
+    <body class="pace-done body-small fixed-nav">
         <div id="wrapper">
             <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
-                <ul class="nav" id="side-menu">
+                <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                     <div class="dropdown profile-element"> 
                         <span> <img alt="image" class="img-circle" src="{{url_for('panel.static',filename='img/profile_small.jpg')}}" /> </span>
@@ -88,10 +88,10 @@
 
             <div id="page-wrapper" class="gray-bg">
                 <div class="row border-bottom">
-                    <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
+                    <nav class="navbar navbar-fixed-top white-bg" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
                         <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-                        <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
+                        <form role="search" class="navbar-form-custom" action="search_results.html">
                             <div class="form-group">
                                 <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
                             </div>
@@ -397,7 +397,7 @@
         <script src="{{url_for('panel.static',filename='js/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 
         <!-- Jvectormap -->
-        <script src="{{url_for('panel.static',filename='js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
+        <script src="{{url_for('panel.static',filename='js/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js')}}"></script>
         <script src="{{url_for('panel.static',filename='js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
 
         <!-- EayPIE -->
