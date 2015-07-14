@@ -1,0 +1,45 @@
+{% block doc -%}
+<!DOCTYPE html>
+<html {% block html_attribs %} {% endblock html_attribs %}>
+{%- block html%}
+
+<head>
+    {%- block head %}
+    <title>{% block title %}MyBill{% endblock title %}</title>
+
+    {%- block metas %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%- endblock metas %}
+
+
+    {%- block styles %}
+    <link href="{{url_for('auth.static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('auth.static', filename='font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+
+    <link href="{{url_for('auth.static', filename='css/animate.css')}}" rel="stylesheet">
+    <link href="{{url_for('auth.static', filename='css/style.css')}}" rel="stylesheet">
+    {%- endblock styles %}
+    {%- endblock head%}
+</head>
+
+<body {% block body_attribs %}class="gray-bg"{% endblock body_attribs %}>
+    {% block body -%}
+    {% block navbar %}
+    {%- endblock navbar %}
+    {% block content -%}
+    {%- endblock content %}
+    {% block scripts %}
+    <!-- Mainly scripts -->
+    <script src="{{url_for('auth.static', filename='js/jquery-2.1.1.js')}}"></script>
+    <script src="{{url_for('auth.static', filename='js/bootstrap.min.js')}}"></script>
+    {%- endblock scripts %}
+
+    {%- endblock body%}
+</body>
+
+{%- endblock html %}
+</html>
+
+{% endblock doc -%}
+
