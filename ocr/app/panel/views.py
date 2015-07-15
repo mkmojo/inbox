@@ -11,3 +11,8 @@ def user(user_id):
         abort(404)
     pics = user.pics.order_by(Pic.timestamp.desc())
     return render_template("panel/index.html", user=user, posts=pics)
+
+@panel.route('/receipts')
+@login_required
+def receipts():
+    return render_template("panel/receipts.html")

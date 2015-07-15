@@ -14,11 +14,11 @@
 
 
     {%- block styles %}
-    <link href="{{url_for('auth.static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{url_for('auth.static', filename='font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+    <link href="{{url_for('panel.static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('panel.static', filename='font-awesome/css/font-awesome.css')}}" rel="stylesheet">
 
-    <link href="{{url_for('auth.static', filename='css/animate.css')}}" rel="stylesheet">
-    <link href="{{url_for('auth.static', filename='css/style.css')}}" rel="stylesheet">
+    <link href="{{url_for('panel.static', filename='css/animate.css')}}" rel="stylesheet">
+    <link href="{{url_for('panel.static', filename='css/style.css')}}" rel="stylesheet">
     {%- endblock styles %}
     {%- endblock head%}
 </head>
@@ -34,8 +34,8 @@
 
     {% block scripts %}
     <!-- Mainly scripts -->
-    <script src="{{url_for('auth.static', filename='js/jquery-2.1.1.js')}}"></script>
-    <script src="{{url_for('auth.static', filename='js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('panel.static', filename='js/jquery-2.1.1.js')}}"></script>
+    <script src="{{url_for('panel.static', filename='js/bootstrap.min.js')}}"></script>
     {%- endblock scripts %}
 
     {%- endblock body%}
