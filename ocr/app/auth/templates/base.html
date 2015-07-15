@@ -25,10 +25,13 @@
 
 <body {% block body_attribs %}class="gray-bg"{% endblock body_attribs %}>
     {% block body -%}
+
     {% block navbar %}
     {%- endblock navbar %}
+
     {% block content -%}
     {%- endblock content %}
+
     {% block scripts %}
     <!-- Mainly scripts -->
     <script src="{{url_for('auth.static', filename='js/jquery-2.1.1.js')}}"></script>
