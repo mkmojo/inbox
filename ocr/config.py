@@ -14,7 +14,7 @@ class Config:
     MYBILL_MAIL_SENDER = 'Flasky Admin <flasky@example.com>'
     MYBILL_ADMIN = os.environ.get('MYBILL_ADMIN')
     MYBILL_POSTS_PER_PAGE = 20
-    STATIC_FOLDER = os.environ.get('STATIC_FOLDER') or "/Users/qqy/workspace/inbox/ocr/app/static"
+    STATIC_FOLDER = os.environ.get('STATIC_FOLDER') or "/home/qqiu/workspace/inbox/ocr/app/static"
 
     @staticmethod
     def init_app(app):
