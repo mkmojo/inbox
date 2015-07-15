@@ -16,3 +16,8 @@ def user(user_id):
 @login_required
 def receipts():
     return render_template("panel/receipts.html")
+
+@panel.route('/transactionss')
+@login_required
+def transactions():
+    return render_template("panel/transactions.html")
