@@ -1,4 +1,6 @@
 {% extends "panel_base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
 
 {% block title%} MyBill | Receipts {% endblock %}
 
@@ -20,7 +22,20 @@ class="pace-done body-small fixed-nav"
 {% endblock %}
 
 {% block page_content %}
+<form action="" method="POST" enctype="multipart/form-data">
+    {{wtf.quick_form(form)}}
+</form>
 
+<div>
+    <p>Reusult:</p>
+    <pre>
+    {% if text %}
+    {% for line in text %}
+    {{line}}
+    {%endfor%}
+    {% endif %}
+    </pre>
+</div>
 
 <div class="footer">
     <div class="pull-right">
