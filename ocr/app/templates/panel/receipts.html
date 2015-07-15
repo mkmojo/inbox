@@ -2,7 +2,7 @@
 
 {% block title%} MyBill | Receipts {% endblock %}
 
-{% block style %}
+{% block styles %}
 {{super()}}
 <link href="{{url_for('panel.static', filename='css/plugins/jQueryUI/jquery-ui-1.10.4.custom.min.css')}}" rel="stylesheet">
 <link href="{{url_for('panel.static', filename='css/plugins/jqGrid/ui.jqgrid.css')}}" rel="stylesheet">
@@ -80,7 +80,6 @@ class="pace-done body-small fixed-nav"
         <strong>Copyright</strong> Example Company &copy; 2014-2015
     </div>
 </div>
-
 {% endblock %}
 
 
