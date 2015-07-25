@@ -1,0 +1,18 @@
+Input reading time: 11.8001ms.
+
+*** TREEWORKS v0.9a ***
+Number of processes: 1, Input size: 10000
++ constructing compressed octree ... done: 13.8061ms.
+Number of nodes: 11930, Levels: 6
++ constructing residual tree ... done.
++ constructing tree contraction structures ... done.
++ computing levels of nodes ... done.
++ serializing tree ... done.
+postprocessing done: 4.29201ms.
+Memory usage: 16961 KB
++ performing tree compute ... done: 9537.73ms [g: 4.06694ms, d: 0.362158ms, c: 9533.29ms]
++ performing tree compute ... done: 66778.5ms [g: 14.184ms, d: 0.660181ms, c: 66763.6ms]
++ performing tree compute ... done: 247455ms [g: 249.469ms, d: 0.00691414ms, c: 247206ms]
++ performing tree compute ... done: 72742.8ms [g: 15.5251ms, d: 0.568867ms, c: 72726.7ms]
++ performing tree compute ... done: 581618ms [g: 171.769ms, d: 0.0038147ms, c: 581447ms]
++ performing tree compute ... done: 8.56614ms [g: 7.82204ms, d: 0.362158ms, c: 0.380993ms]

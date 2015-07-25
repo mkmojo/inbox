@@ -1,0 +1,3 @@
+mpicxx -c -o user_read_input_data.o -O3 -std=c++0x   user_read_input_data.cpp 
+mpicxx -c -o user_test.o -O3 -std=c++0x   user_test.cpp 
+mpicxx -o test -O3 -std=c++0x   user_test.o user_read_input_data.o 
