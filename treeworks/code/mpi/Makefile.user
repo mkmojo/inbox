@@ -1,0 +1,25 @@
+###
+#  Project: TreeWorks
+#
+#  File: Makefile.user
+#  Created: Apr 12, 2009
+#
+#  Author: Abhinav Sarje <abhinav.sarje@gmail.com>
+###
+
+CXX = mpicxx
+CXXFLAGS = 
+CXXLIBFLAGS = 
+CXXIFLAGS =
+
+test: user_test.o user_read_input_data.o
+	$(CXX) -o test $(CXXFLAGS) $(CXXIFLAGS) user_test.o user_read_input_data.o $(CXXLIBFLAGS)
+
+user_read_input_data.o: user_read_input_data.cpp user_read_input_data.hpp
+	$(CXX) -c -o user_read_input_data.o $(CXXFLAGS) $(CXXIFLAGS) user_read_input_data.cpp $(CXXLIBFLAGS)
+
+user_test.o: user_test.cpp
+	$(CXX) -c -o user_test.o $(CXXFLAGS) $(CXXIFLAGS) user_test.cpp $(CXXLIBFLAGS)
+
+clean:
+	rm -f *.o test
