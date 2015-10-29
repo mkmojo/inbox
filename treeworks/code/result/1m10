@@ -1,0 +1,110 @@
+Input reading time: 634.982ms.
+Number of processes: 8, Input size: 1000000
+constructing the compressed octree ... done: 998.807ms.
+Number of nodes: 1442653, Levels: 10
+postprocessing done: 183.24ms.
+performing tree compute ... done: 514.857ms [g: 483.906ms, d: 8.55494ms, c: 22.2251ms]
+performing tree compute ... done: 1295.15ms [g: 1251.22ms, d: 20.6652ms, c: 23.248ms]
+performing tree compute ... done: 1406.98ms [g: 1374.36ms, d: 9.4471ms, c: 22.8989ms]
+performing tree compute ... done: 76.793ms [g: 0.625134ms, d: 1.36781ms, c: 72.2179ms]
+performing tree compute ... done: 24.9989ms [g: 0.65589ms, d: 0.0491142ms, c: 23.366ms]
+Input reading time: 425.834ms.
+Number of processes: 16, Input size: 1000000
+constructing the compressed octree ... done: 498.099ms.
+Number of nodes: 1442653, Levels: 10
+postprocessing done: 97.903ms.
+performing tree compute ... done: 254.451ms [g: 238.768ms, d: 4.44412ms, c: 11.1339ms]
+performing tree compute ... done: 887.704ms [g: 864.791ms, d: 10.4101ms, c: 12.4559ms]
+performing tree compute ... done: 655.111ms [g: 637.562ms, d: 4.89116ms, c: 12.1799ms]
+performing tree compute ... done: 42.7129ms [g: 0.335932ms, d: 4.36211ms, c: 36.7591ms]
+performing tree compute ... done: 13.0341ms [g: 0.347137ms, d: 0.0369549ms, c: 12.3911ms]
+Input reading time: 376.643ms.
+Number of processes: 24, Input size: 1000000
+constructing the compressed octree ... done: 277.1ms.
+Number of nodes: 1442653, Levels: 10
+postprocessing done: 72.542ms.
+performing tree compute ... done: 138.829ms [g: 128.208ms, d: 3.15499ms, c: 7.32112ms]
+performing tree compute ... done: 500.814ms [g: 484.28ms, d: 7.08413ms, c: 9.42183ms]
+performing tree compute ... done: 338.593ms [g: 326.481ms, d: 3.44706ms, c: 8.15892ms]
+performing tree compute ... done: 31.204ms [g: 0.22912ms, d: 0.105858ms, c: 30.3261ms]
+performing tree compute ... done: 9.45091ms [g: 0.257969ms, d: 0.0770092ms, c: 8.43811ms]
+Input reading time: 305.169ms.
+Number of processes: 32, Input size: 1000000
+constructing the compressed octree ... done: 257.593ms.
+Number of nodes: 1442653, Levels: 10
+postprocessing done: 56.205ms.
+performing tree compute ... done: 121.276ms [g: 113.252ms, d: 2.43902ms, c: 5.51009ms]
+performing tree compute ... done: 416.872ms [g: 403.758ms, d: 5.34296ms, c: 7.75099ms]
+performing tree compute ... done: 278.5ms [g: 267.776ms, d: 2.68698ms, c: 7.31111ms]
+performing tree compute ... done: 29.2058ms [g: 2.30885ms, d: 4.06218ms, c: 22.747ms]
+performing tree compute ... done: 7.62415ms [g: 0.22316ms, d: 0.0720024ms, c: 7.10511ms]
+Input reading time: 316.157ms.
+Number of processes: 40, Input size: 1000000
+constructing the compressed octree ... done: 207.83ms.
+Number of nodes: 1442653, Levels: 10
+postprocessing done: 51.2991ms.
+performing tree compute ... done: 105.667ms [g: 96.0591ms, d: 4.76789ms, c: 4.493ms]
+performing tree compute ... done: 375.668ms [g: 364.115ms, d: 4.43387ms, c: 7.056ms]
+performing tree compute ... done: 248.573ms [g: 239.459ms, d: 3.41296ms, c: 5.481ms]
+performing tree compute ... done: 18.6841ms [g: 0.226974ms, d: 3.53408ms, c: 14.2601ms]
+performing tree compute ... done: 6.52194ms [g: 0.196934ms, d: 0.0970364ms, c: 6.073ms]
+Input reading time: 329.953ms.
+Number of processes: 48, Input size: 1000000
+constructing the compressed octree ... done: 133.524ms.
+Number of nodes: 1442653, Levels: 10
+postprocessing done: 46.54ms.
+performing tree compute ... done: 65.4061ms [g: 59.8421ms, d: 1.84894ms, c: 3.5882ms]
+performing tree compute ... done: 232.458ms [g: 222.422ms, d: 3.71313ms, c: 6.26087ms]
+performing tree compute ... done: 165.001ms [g: 158.202ms, d: 1.91998ms, c: 4.58598ms]
+performing tree compute ... done: 18.996ms [g: 0.182867ms, d: 2.50411ms, c: 16.201ms]
+performing tree compute ... done: 5.77998ms [g: 0.164032ms, d: 0.112057ms, c: 5.09501ms]
+Input reading time: 308.147ms.
+Number of processes: 56, Input size: 1000000
+constructing the compressed octree ... done: 116.331ms.
+Number of nodes: 1442653, Levels: 10
+postprocessing done: 46.7889ms.
+performing tree compute ... done: 59.3281ms [g: 54.3799ms, d: 1.81913ms, c: 3.00002ms]
+performing tree compute ... done: 201.468ms [g: 192.673ms, d: 3.26204ms, c: 5.48601ms]
+performing tree compute ... done: 126.548ms [g: 119.194ms, d: 2.2459ms, c: 4.88997ms]
+performing tree compute ... done: 23.7439ms [g: 7.64704ms, d: 1.92499ms, c: 13.8261ms]
+performing tree compute ... done: 5.25093ms [g: 0.159979ms, d: 0.09799ms, c: 4.54402ms]
+Input reading time: 247.111ms.
+Number of processes: 64, Input size: 1000000
+constructing the compressed octree ... done: 117.068ms.
+Number of nodes: 1442653, Levels: 10
+postprocessing done: 38.6181ms.
+performing tree compute ... done: 54.214ms [g: 50.2708ms, d: 1.405ms, c: 2.44498ms]
+performing tree compute ... done: 185.857ms [g: 178.192ms, d: 2.83504ms, c: 4.78101ms]
+performing tree compute ... done: 144.393ms [g: 135.951ms, d: 3.55697ms, c: 4.83513ms]
+performing tree compute ... done: 14.92ms [g: 0.141144ms, d: 1.95384ms, c: 12.3849ms]
+performing tree compute ... done: 9.18603ms [g: 0.147104ms, d: 0.108957ms, c: 8.19993ms]
+Input reading time: 310.493ms.
+Number of processes: 72, Input size: 1000000
+constructing the compressed octree ... done: 97.6701ms.
+Number of nodes: 1442653, Levels: 10
+postprocessing done: 32.855ms.
+performing tree compute ... done: 54.7402ms [g: 46.9089ms, d: 2.24996ms, c: 1.96099ms]
+performing tree compute ... done: 178.159ms [g: 170.117ms, d: 2.65217ms, c: 5.33104ms]
+performing tree compute ... done: 116.673ms [g: 110.506ms, d: 1.4298ms, c: 4.41885ms]
+performing tree compute ... done: 16.8231ms [g: 4.41599ms, d: 2.39801ms, c: 9.619ms]
+performing tree compute ... done: 4.62508ms [g: 0.159025ms, d: 0.125885ms, c: 3.92795ms]
+Input reading time: 289.471ms.
+Number of processes: 80, Input size: 1000000
+constructing the compressed octree ... done: 94.641ms.
+Number of nodes: 1442653, Levels: 10
+postprocessing done: 29.49ms.
+performing tree compute ... done: 54.249ms [g: 41.312ms, d: 9.47094ms, c: 1.61409ms]
+performing tree compute ... done: 204.09ms [g: 195.346ms, d: 2.40803ms, c: 6.26397ms]
+performing tree compute ... done: 119.73ms [g: 112.901ms, d: 1.45483ms, c: 5.26905ms]
+performing tree compute ... done: 14.3058ms [g: 2.99096ms, d: 1.46294ms, c: 9.46188ms]
+performing tree compute ... done: 5.08595ms [g: 0.133038ms, d: 0.113964ms, c: 4.12107ms]
+Input reading time: 1297.51ms.
+Number of processes: 88, Input size: 1000000
+constructing the compressed octree ... done: 80.8001ms.
+Number of nodes: 1442653, Levels: 10
+postprocessing done: 30.926ms.
+performing tree compute ... done: 45.898ms [g: 41.1279ms, d: 2.76017ms, c: 1.31202ms]
+performing tree compute ... done: 180.864ms [g: 161.87ms, d: 6.96397ms, c: 11.9898ms]
+performing tree compute ... done: 121.301ms [g: 112.451ms, d: 1.85609ms, c: 6.2871ms]
+performing tree compute ... done: 12.759ms [g: 0.132084ms, d: 1.16897ms, c: 11.061ms]
+performing tree compute ... done: 7.02286ms [g: 0.131845ms, d: 0.128031ms, c: 6.17313ms]

@@ -1,0 +1,13 @@
+1. Forget to test the case when root node is NULL
+2. The convention of tree depth is 1-indexed
+
+#Ref Answer
+It is smarter because it does not use any additional parameter.
+It is more like a DP solution. 
+
+First filter out simple casese when subtree has only 0 or 1 level.
+Then get the leftside depth and right side depth, and then compare. 
+
+My first mimic version is still wrong, because I forgot to do the
+accumulation.
+
