@@ -27,6 +27,14 @@ class Solution {
         do_invert(root, newRoot);
         return newRoot;
     }
+
+    TreeNode* invertTree1(TreeNode* root) {
+        if(root == NULL) return NULL;
+        TreeNode *old_left = root->left, *old_right = root->right;
+        root->left = invertTree(old_right);
+        root->right = invertTree(old_left);
+        return root;
+    }
 };
 
 int main()
